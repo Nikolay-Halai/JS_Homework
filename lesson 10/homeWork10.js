@@ -1,7 +1,7 @@
 // task 1
 function Animal(name) {
     this._foodAmount = 50;
-    this._name = name;
+    this.name = name;
 }
 
 Animal.prototype._formatFoodAmount = function () {
@@ -124,6 +124,25 @@ var initialObj = {
     }
 };
 
+var testObj = {
+    string: 'Vasya',
+    number: 30,
+    boolean: true,
+    undefined: undefined,
+    null: null,
+    array: [1, 2, 3],
+    object: {
+        string2: 'Petrov',
+        object2: {
+            array2: [{}, {}]
+        },
+        object3: {}
+    },
+    method: function () {
+        alert('Hello test');
+    }
+};
+
 function deepEqual(value1, value2) {
     if (Array.isArray(value1) && Array.isArray(value2)) {
         if (value1.length !== value2.length) {
@@ -134,12 +153,18 @@ function deepEqual(value1, value2) {
             if (!deepEqual(value1[i], value2[i])) {
                 return false;
             }
-        }
+        } 
+
+    } else if (typeof value1 === 'function' && typeof value1 === 'function') {   
+        if (value1.toString() !== value2.toString()) {
+             return false;
+        }    
+
     } else if (value1 && value2 && typeof value1 === 'object' && typeof value2 === 'object' && !Array.isArray(value1) && !Array.isArray(value2)) {
         if (!deepEqual(Object.keys(value1), Object.keys(value2))) {
             return false;
         }
-
+    
         for (var key in value1) {
             if (value1.hasOwnProperty(key)) {
                 if (!deepEqual(value1[key], value2[key])) {
@@ -147,6 +172,7 @@ function deepEqual(value1, value2) {
                 }
             }
         }
+        
     } else {
         return value1 === value2;
     }
@@ -154,5 +180,5 @@ function deepEqual(value1, value2) {
     return true;
 }
 
-console.log( deepEqual(initialObj, clonedObj));
+console.log( deepEqual(initialObj, testObj));
 console.log( deepEqual(initialObj, initialObj));
