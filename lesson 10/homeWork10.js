@@ -107,7 +107,7 @@ console.log(clonedObj);
 // task 3
 var initialObj = {
     string: 'Vasya',
-    number: 30,
+    number: NaN,
     boolean: true,
     undefined: undefined,
     null: null,
@@ -126,7 +126,7 @@ var initialObj = {
 
 var testObj = {
     string: 'Vasya',
-    number: 30,
+    number: NaN,
     boolean: true,
     undefined: undefined,
     null: null,
@@ -172,7 +172,7 @@ function deepEqual(value1, value2) {
                 }
             }
         }
-        
+
     } else {
         return value1 === value2;
     }
@@ -182,3 +182,15 @@ function deepEqual(value1, value2) {
 
 console.log( deepEqual(initialObj, testObj));
 console.log( deepEqual(initialObj, initialObj));
+
+
+
+
+
+
+
+
+
+
+
+

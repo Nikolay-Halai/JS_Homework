@@ -82,3 +82,8 @@ CoffeeMachine.prototype.setWaterAmount = function(amount) {
   var coffeeMachine = new CoffeeMachine(10000);
   coffeeMachine.setWaterAmount(50);
   coffeeMachine.run();
+
+
+  var arr = [1, 2, 3, 4, 5, 6];
+  console.log(arr.splice(2, 2, 7, 9));
+  console.log(arr);
