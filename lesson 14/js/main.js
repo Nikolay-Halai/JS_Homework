@@ -21,15 +21,15 @@ button.onclick = function (EO) {
     }
 };
 
-newParagraph2.onclick = function (event) {
+newParagraph2.addEventListener('click', function (event) {
     event.preventDefault();
 
     var target = event.target;
 
     if (target.tagName == 'A') {
-        alert(target);
+        alert(target.href);
     }
-};
+});
 
 
 
@@ -38,7 +38,7 @@ newParagraph2.onclick = function (event) {
 
 var trBtn = document.getElementById('btn'),
     table = document.getElementsByTagName('tbody');
-table = table[0];
+    table = table[0];
 
 trBtn.onclick = function (EO) {
     event.stopImmediatePropagation();
@@ -52,25 +52,42 @@ trBtn.onclick = function (EO) {
     table.insertBefore(newStrok, tr);
 };
 
-function addInput(teg) {
+function addInput(tag) {
     var input = document.createElement('input');
     input.type = 'text';
-    teg.appendChild(input);
+    
+    if (tag.firstChild) {
+        input.value = tag.firstChild.textContent; 
+        tag.replaceChild(input, tag.firstChild);
+    
+    } else {
+        tag.appendChild(input);
+    }
+
     input.focus();
+    
 }
 
 table.onclick = function (event) {
     var target = event.target;
 
     if (target.tagName == 'TD') {
-        addInput(target);
+        addInput(target);    
     }
 };
 
-table.onkeydown = function (event) {
+table.onkeydown = function(event) {
     var target = event.target;
 
     if (target.tagName == 'INPUT') {
         event.code === 'Enter' && target.blur();
     }
 };
+
+
+table.addEventListener('focusout', function (event) {
+    var target = event.target,
+        text = document.createTextNode(target.value);
+    
+    target.parentNode.replaceChild(text, target);
+});

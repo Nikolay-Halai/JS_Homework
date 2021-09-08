@@ -1,20 +1,20 @@
 // task 1
 
-var arr = ['Maria', 'Andre', 'Bob', 'Alex'],
-    Names = [];
+var arr = ['Maria', 'Andre', 'Bob', 'Alex'];
+    
 
 
 function getNames (arr) {
 
-    Names = arr.map(function (value) { 
+    var Names = arr.map(function (value) { 
          return {name: value}; 
         });
 
-        return Names;
+        return console.log(Names);
 }
 
 getNames(arr);
-console.log(Names);
+
 
 
 
@@ -25,7 +25,7 @@ var time =  ['00', '13', '24'];
    
 function showTime(arr) {
    
-     var strTime = arr.reduce(function(str, curent ) {
+     var strTime = arr.reduce(function(str, curent) {
          return  str + ' : ' + curent ;         
      });
     
