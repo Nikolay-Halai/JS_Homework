@@ -12,7 +12,8 @@ function dataReqest() {
     var xhr = new XMLHttpRequest();
 
     xhr.open('GET', 'https://reqres.in/api/users?page=2');
-    // xhr.open("GET", "https://httpstat.us/0");      
+    // xhr.open("GET", "https://httpstat.us/500");
+          
     xhr.send();
 
     xhr.onload = function () {
@@ -24,14 +25,43 @@ function dataReqest() {
             createTab(person);
 
         } else {
-            alert('Ошибка: ' + this.status + this.statusText);
+            errorModal();
         }
     };
 
     xhr.onerror = function () {
-        alert('Ошибка: ' + this.status + this.statusText);
+        errorModal();
     };
 }
+
+
+function errorModal () {
+    var body = document.getElementsByTagName('body');
+    body = body[0];
+
+    var shadow = document.createElement('div'); 
+    shadow.id = 'shadow';
+
+    body.appendChild(shadow);
+   
+    var errorModal = document.createElement('div');
+    errorModal.id = 'errorModal';
+
+    errorModal.innerHTML = '<p>Sorry...<br> Something went wrong, please try to come back later or reload the page</p>' +
+                            '<button class = "errorBtn">ok</button>';
+    
+    body.appendChild(errorModal);   
+    
+    var errorBtn = errorModal.getElementsByClassName('errorBtn');
+    errorBtn = errorBtn[0];
+
+    errorBtn.onclick = function() {
+        shadow.remove();
+        errorModal.remove();
+    };
+}
+
+
 
 function createTab(arr) {
     var tabs = document.getElementById('tabs');
@@ -55,9 +85,9 @@ function createTab(arr) {
     hideTabsContent(1);
 }
 
+
 var tabBtn = document.getElementsByClassName('tab');
 var content = document.getElementsByClassName('content');
-
 
 function hideTabsContent(hide) {
     for (var i = hide; i < content.length; i++) {
@@ -67,7 +97,6 @@ function hideTabsContent(hide) {
         tabBtn[i].classList.remove('activeBtn');
     }
 }
-
 
 tabs.onclick = function (event) {
     var target = event.target;
@@ -92,3 +121,4 @@ function showContent(show) {
         content[show].classList.add('show');
     }
 }
+
