@@ -1,9 +1,12 @@
 var btn = document.getElementById('btn');
 
 btn.addEventListener('click', function () {
-    if (localStorage.getItem('users')) {
+   
+
+     if (localStorage.getItem('users')) {
         createTab(JSON.parse(localStorage.getItem('users')));
-    } else {
+    } else  {
+        
         dataReqest();
     }
 });
@@ -25,6 +28,7 @@ function dataReqest() {
             createTab(person);
 
         } else {
+          
             errorModal();
         }
     };
@@ -65,6 +69,8 @@ function errorModal () {
 
 function createTab(arr) {
     var tabs = document.getElementById('tabs');
+   
+ 
 
     for (var i = 1; i < arr.length + 1; i++) {
 
@@ -82,6 +88,7 @@ function createTab(arr) {
             '</p>' + '</div>';
     }
 
+    btn.setAttribute("disabled", true);
     hideTabsContent(1);
 }
 

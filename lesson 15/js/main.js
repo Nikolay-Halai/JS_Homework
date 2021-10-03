@@ -37,7 +37,9 @@ newParagraph2.onclick = function (event) {
             alert(JSON.parse(value).path);
         } else {
             // target.getAttribute('href')
-            localStorage.setItem(target.textContent, JSON.stringify({path: target.href}));
+            localStorage.setItem(target.textContent, JSON.stringify({
+                path: target.href
+            }));
             // target.setAttribute('href', '#')
             target.href = '#';
             alert('сохранено');
@@ -49,22 +51,32 @@ newParagraph2.onclick = function (event) {
 // task 1
 
 var form = document.getElementsByTagName('form');
-    form = form[0];
+form = form[0];
 var button = document.getElementById('button');
 var inputX = document.getElementById('input-x');
 var inputY = document.getElementById('input-y');
 
-var x, 
+var x,
     y;
 
-inputX.addEventListener('keyup', function(event) {
+inputX.addEventListener('keyup', function (event) {
     x = event.target.value;
-    update();
+    if (x % 1 == 0 && !/[a-z,а-я]/.test(x)) {
+        update();
+    } else {
+        alert('enter an integer from 1 to 10');
+        this.value = '';
+    }
 });
 
-inputY.addEventListener('keyup', function(event) {
+inputY.addEventListener('keyup', function (event) {
     y = event.target.value;
-    update();
+    if (y % 1 == 0 && !/[a-z,а-я]/.test(y)) {
+        update();
+    } else {
+        alert('enter an integer from 1 to 10');
+        this.value = '';
+    }
 });
 
 function update() {
@@ -75,7 +87,7 @@ function update() {
     }
 }
 
-button.addEventListener('click', function(event) {
+button.addEventListener('click', function (event) {
     event.preventDefault();
 
     var amountX = +x;
@@ -89,10 +101,11 @@ button.addEventListener('click', function(event) {
         }
 
         document.body.appendChild(buildTable(amountX, amountY));
-    
+
     } else {
         alert('Invalid input');
     }
+
 });
 
 function buildTable(x, y) {
@@ -100,19 +113,47 @@ function buildTable(x, y) {
 
     table.id = 'table';
     table.classList.add('chess');
-    table.addEventListener('click', function() {
-        table.classList.toggle('chess-invert');
-    });
-    
-    for (var i = 0; i < x; i++) {
+
+
+    for (var i = 0; i < y; i++) {
         var row = document.createElement('tr');
 
-        for (var j = 0; j < y; j++) {
-            row.appendChild(document.createElement('td'));
+
+        for (var j = 0; j < x; j++) {
+            var td = document.createElement('td');
+            if (i % 2 == j % 2) {
+                td.className = "white";
+            } else {
+                td.className = "black";
+            }
+            row.appendChild(td);
         }
 
         table.appendChild(row);
     }
+
+
+    table.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var target = event.target;
+
+        if (target.tagName == 'TD') {
+            var td = document.getElementsByTagName('td');
+
+            for (var i = 0; i < td.length; i++) {
+
+                if (i % 2 == 0) {
+                    td[i].classList.toggle('black');
+                    td[i].classList.toggle('white');
+
+                } else {
+                    td[i].classList.toggle('black');
+                    td[i].classList.toggle('white');
+                }
+            }
+        }
+    });
 
     return table;
 }

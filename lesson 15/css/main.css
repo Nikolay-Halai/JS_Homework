@@ -18,23 +18,11 @@ td {
     text-align: center
 }
 
-tr:nth-child(even) td:nth-child(odd) {
-  background: #000;
+
+.black {
+  background-color: black;
 }
 
-tr:nth-child(odd) td:nth-child(even) {
-  background: #000;
-}
-
-.chess-invert tr:nth-child(even) td:nth-child(even) {
-  background: #000;
-}
-.chess-invert tr:nth-child(odd) td:nth-child(odd) {
-  background: #000;
-}
-.chess-invert tr:nth-child(even) td:nth-child(odd) {
-  background: #fff;
-}
-.chess-invert tr:nth-child(odd) td:nth-child(even) {
-  background: #fff;
+.white {
+  background-color: white;
 }
