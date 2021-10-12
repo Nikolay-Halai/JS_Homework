@@ -1,7 +1,7 @@
 // task 1
 var mail = 'name_surname-1234@gmail.com';
 
-/^[a-z]{3,10}[_]{1}[a-z]{3,10}([-]{1}[0-9]{4})?[@]{1}[a-z0-9]{2,10}(-|.)?[a-z0-9]{2,10}\.com$/i.test(mail);
+/^[a-z]{3,10}_[a-z]{3,10}(-\d{4})?@[a-z\d]{2,10}(-|.)?[a-z\d]{2,10}\.com$/i.test(mail);
 
 
 
@@ -9,13 +9,13 @@ var mail = 'name_surname-1234@gmail.com';
 
 // task 2
 
-var tel = '+375-25-777-77-77';
+var tel = '8044-444-44-44';
 // +375-25-777-77-77
 // 375299999999
 // 8-044-444-44-44
 // 8033-6666666
 
-var reg = /^[\+]?(375|80|8)[-]?[0]?(25|29|44|17|33)[-]?[1-9]*[0-9]{2}[-]?[0-9]{2}[-]?[0-9]{2}$/;
+var reg = /^(([\+]?375)-?|8-?0)(25|29|33|44|17)-?[1-9](\d{2}-?){2}\d{2}$/;
 
 
 function chekTel(tel, reg) {
@@ -34,7 +34,7 @@ var text = 'thght t wld b sr t std';
 function count(text) {
     var result = text.match(/[aeiouyауоыиэяюёе]/gim);
 
-    if (result.length == 0) {
+    if (result === null) {
         console.log('number of vowels : 0');
 
     } else {
@@ -58,6 +58,7 @@ console.log('number of vowels : ' + text.length);
 
 
 // 3 option
+// по этому метаду я не понял как перебрать получаймый обьект, ошибку выдает постоянно а ленгтх undefaind
 var text = 'thghtaaAAaa t wld b sr t std';
 
 function count(text) {
